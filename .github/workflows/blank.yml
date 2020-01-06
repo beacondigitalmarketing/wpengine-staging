@@ -1,0 +1,24 @@
+name: CI
+
+on: [push]
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo -e "\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n\tHostName git.wpengine.com\n\tUser git" >> ~/.ssh/config
+        git config --global user.email "dennis@beacondigitalmarketing.com"
+        git config --global user.name "BDM"
+        git clone git@git.wpengine.com:production/beacondevelop.git tmp_remote
+        rm -rf .git
+        mv tmp_remote/.git .git
+        rm -rf tmp_remote
+        git add -A
+        git commit -m"deploy"
+        git push origin master        
