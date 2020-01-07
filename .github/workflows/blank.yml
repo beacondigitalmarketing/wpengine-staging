@@ -12,7 +12,7 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        ssh git@git.wpengine.com info
+        ssh git@git.wpengine.com info 
         git config --global user.email "dennis@beacondigitalmarketing.com"
         git config --global user.name "BDM"
         git clone git@git.wpengine.com:production/beacondevelop.git tmp_remote
